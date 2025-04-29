@@ -21,6 +21,6 @@ if (cadastroForm) {
     localStorage.setItem('usuario', JSON.stringify(novoUsuario));
 
     alert('Cadastro realizado com sucesso! Você pode agora fazer login.');
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
   });
 }
