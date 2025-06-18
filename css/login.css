@@ -42,7 +42,7 @@
     color: #444;
   }
   
-  input[type="text"], input[type="email"]
+  input[type="text"], input[type="email"],
   input[type="password"] {
     padding: 0.7rem;
     border: 1px solid #ccc;
