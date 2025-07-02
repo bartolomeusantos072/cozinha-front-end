@@ -168,7 +168,7 @@ async function excluirRefeicao(id) {
   if (!confirm('Tem certeza que deseja excluir este prato?')) return;
 
   try {
-    const response = await fetch(`http://localhost:3000/pratos/${id}`, {
+    const response = await fetch(`https://api-cantina-storage.vercel.app/pratos/${id}`, {
       method: 'DELETE'
     });
 
