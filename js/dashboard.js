@@ -35,7 +35,7 @@ function formatarData(dataISO) {
 // Carregar pratos do usuário logado
 async function carregarRefeicoes() {
   try {
-    const response = await fetch('http://localhost:3000/pratos');
+    const response = await fetch('https://api-cantina-storage.vercel.app/pratos');
     const data = await response.json();
     refeicoes = data;
     renderRefeicoes();
@@ -133,7 +133,7 @@ refeicaoForm.addEventListener('submit', async (e) => {
 
   try {
     // Determina a URL e o método (POST ou PUT)
-    const url = id ? `http://localhost:3000/pratos/${id}` : 'http://localhost:3000/pratos';
+    const url = id ? `https://api-cantina-storage.vercel.app/pratos/${id}` : 'https://api-cantina-storage.vercel.app/pratos';
     const method = id ? 'PUT' : 'POST';
 
     // Exibe o método e URL no console
