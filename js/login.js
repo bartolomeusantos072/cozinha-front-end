@@ -12,7 +12,7 @@ const loginForm = document.getElementById('login-form');
         return;
       }
 
-      fetch('https://api-cantina-storage.vercel.app/cozinheiras/signin')
+      fetch('https://api-cantina-storage.vercel.app/cozinheiras')
         .then(response => response.json())
         .then(users => {
           const user = users.find(
