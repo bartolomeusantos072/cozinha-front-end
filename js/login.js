@@ -1,41 +1,39 @@
 const loginForm = document.getElementById('login-form');
-if (loginForm) {
-  loginForm.addEventListener('submit', function (e) {
-    e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    if (!email || !senha) {
-      alert('Por favor, preencha todos os campos.');
-      return;
-    }
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
 
-    fetch('http://localhost:3000/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, senha }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          alert(`Erro: ${data.error}`);
-          return;
-        }
+      if (!email || !senha) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
 
-        // Armazena os dados corretos no localStorage
-        localStorage.setItem('id_usuario', data.id_usuario);
-        localStorage.setItem('nome_usuario', data.nome);
-        localStorage.setItem('email_usuario', data.email);
+      fetch('https://api-cantina-storage.vercel.app/cozinheiras')
+        .then(response => response.json())
+        .then(users => {
+          const user = users.find(
+            user => user.email === email && user.senha === senha
+          );
 
-        alert('Login realizado com sucesso!');
-        window.location.href = 'dashboard.html';
-      })
-      .catch(error => {
-        console.error('Erro ao fazer login:', error);
-        alert('Erro ao fazer login. Tente novamente mais tarde.');
-      });
-  });
-}
+          if (!user) {
+            alert('Email ou senha inválidos');
+            return;
+          }
+
+          localStorage.setItem('id_usuario', user.id);
+          localStorage.setItem('nome_usuario', user.nome);
+          localStorage.setItem('email_usuario', user.email);
+
+          alert('Login realizado com sucesso!');
+          window.location.href = 'dashboard.html';
+        })
+        .catch(error => {
+          console.error('Erro ao fazer login:', error);
+          alert('Erro ao fazer login. Tente novamente mais tarde.');
+        });
+    });
+  }
